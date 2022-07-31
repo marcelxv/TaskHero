@@ -1,0 +1,105 @@
+h1 {
+  color: white;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 14px;
+  border: 3px solid darkslateblue;
+  margin: 1rem;
+  background-color: rgba(243, 243, 243, 0.452);
+}
+
+input:focus {
+  outline: none;
+}
+
+.app {
+  background: darkslateblue;
+  color: black;
+  height: 100vh;
+  padding: 30px;
+}
+
+.todo-list {
+  background: #e8e8e8;
+  border-radius: 4px;
+  color: darkslateblue;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.todo-form {
+  background: white;
+  color: darkslateblue;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 4px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo {
+  align-items: center;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  margin: 0.4rem;
+  padding: 0 1rem;
+
+}
+
+.btn {
+  border: none;
+  background: darkslateblue;
+  padding: 10px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  border: 3px solid darkslateblue;
+  margin: 1rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.btn-check {
+  border: none;
+  background: none;
+  padding: 0.3rem;
+  border-radius: 6px;
+  color: darkslateblue;
+  font-size: 1.5rem;
+}
+
+.btn-check:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.counter {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 0 2rem;
+}
+
