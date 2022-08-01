@@ -3,10 +3,10 @@ import React from "react";
 function TodoItem({ todo, index, completeTodo }) {
   const isCompleted = () => {
     if (todo.isCompleted) {
-      return true
-    }
-    return false
-  }
+      return "✅";
+     }
+    return "⏳";
+   }
 
   const isChecked = () => {
     return { textDecoration: todo.isCompleted ? "line-through" : "none" }
@@ -17,7 +17,7 @@ function TodoItem({ todo, index, completeTodo }) {
     >
       {todo.text}
       <div>
-        <button disabled={ isCompleted() } className="btn-check" onClick={() => completeTodo(index)}>{todo.icon}</button>
+        <button className="btn-check" onClick={() => completeTodo(index)}>{isCompleted()}</button>
       </div>
     </div>
         )

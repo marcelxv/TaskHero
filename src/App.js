@@ -10,10 +10,16 @@ import { ToastContainer } from 'react-toastify';
 function App() {
   const completeTodo = index => {
     const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    newTodos[index].icon = "✅";
-    setTodos(newTodos);
-    notify("Tarefa concluída", "success");
+    if (newTodos[index].isCompleted) {
+      newTodos[index].isCompleted = false;
+      setTodos(newTodos);
+      notify("Tarefa marcada como incompleta", "info");
+    } else {
+      newTodos[index].isCompleted = true;
+      setTodos(newTodos);
+      notify("Tarefa concluída", "success");
+
+    }
   };
 
   const addTodo = text => {
