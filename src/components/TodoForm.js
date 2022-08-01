@@ -1,19 +1,13 @@
-import React from "react";
-import notify from "../utils/notify";
+import { useState } from "react";
 
 function TodoForm({addTodo}) {
-    const [value, setValue] = React.useState("");
+    const [value, setValue] = useState("");
     const handleSubmit = e => {
-      if (value.length === 0 || value.trim() === "") {
-        e.preventDefault();
-        notify("Digite algo!", "error");
-      } else {
       e.preventDefault();
       if (!value) return;
-      addTodo(value.trim());
+      addTodo(value);
       setValue("");
-      notify("Tarefa adicionada");
-    }}
+    };
   
     return (
       <form className="todo-form" onSubmit={handleSubmit}>

@@ -17,9 +17,25 @@ function App() {
   };
 
   const addTodo = text => {
-    const newTodos = [...todos, { text, icon : "🔘"}];
+    const cleanInput = text.toLowerCase().trim();
+    const isInvalid = cleanInput.length === 0 || cleanInput.trim() === "";
+    if (isInvalid) {
+      notify("Digite algo!", "error");
+    } else {
+    const newTodos = [...todos];
+    const isDuplicated = newTodos.some(todo => todo.cleanInput === cleanInput);
+    if (isDuplicated) {
+      notify("Tarefa já existe", "error");
+    } else {
+      newTodos.push({
+        text,
+        isCompleted: false,
+        icon: "⏳",
+        cleanInput: cleanInput.trim(),
+      });
     setTodos(newTodos);
-  }
+    };
+  }};
   const [todos, setTodos] = React.useState([]);
 
   return (
