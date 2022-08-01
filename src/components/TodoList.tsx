@@ -1,7 +1,8 @@
 import React from "react";
 import TodoItem from "./TodoItem";
+import { Todo } from "../types";
 
-function TodoList({ todos, completeTodo }) {
+function TodoList({ todos, completeTodo }: { todos: Todo[], completeTodo: (index: number) => void }) {
   return (
     <div data-testid="todo-list" className="todo-list">{
     todos.map((todo, index) => (
@@ -9,7 +10,7 @@ function TodoList({ todos, completeTodo }) {
           key={index}
           index={index}
           todo={todo}
-          icon={todo.icon}
+          // icon={todo.icon}
           completeTodo={completeTodo}
         />
         ))

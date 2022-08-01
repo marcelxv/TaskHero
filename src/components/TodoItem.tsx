@@ -1,6 +1,7 @@
 import React from "react";
+import { Todo } from "../types";
 
-function TodoItem({ todo, index, completeTodo }) {
+function TodoItem({ todo, index, completeTodo }: {todo: Todo, index: number, completeTodo: (index: number) => void}) {
   const isCompleted = () => {
     if (todo.isCompleted) {
       return "✅";

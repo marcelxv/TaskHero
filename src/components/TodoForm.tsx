@@ -1,8 +1,9 @@
+import React from "react";
 import { useState } from "react";
 
-function TodoForm({addTodo}) {
+function TodoForm({addTodo}: {addTodo: (text: string) => void}) {
     const [value, setValue] = useState("");
-    const handleSubmit = e => {
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
       e.preventDefault();
       if (!value) return;
       addTodo(value);
