@@ -39,6 +39,7 @@ function App() {
         isCompleted: false,
         icon: "⏳",
         cleanInput: cleanInput.trim(),
+        index: newTodos.length
       });
     setTodos(newTodos as any);
     };

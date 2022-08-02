@@ -1,4 +1,5 @@
 export interface Todo {
+  index: number;
   text: string;
   isCompleted: boolean;
   icon: string;

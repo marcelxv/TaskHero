@@ -19,7 +19,7 @@ function TodoForm({addTodo}: {addTodo: (text: string) => void}) {
           value={value}
           onChange={e => setValue(e.target.value)}
         />
-        <button disabled={value ? false : true } onClick={handleSubmit} data-testid="add-task-button" className="btn" type="button">Adicionar</button>
+        <button disabled={value ? false : true } data-testid="add-task-button" className="btn" type="submit">Adicionar</button>
       </form>
       
     );
