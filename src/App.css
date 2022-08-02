@@ -75,6 +75,20 @@ input:focus {
 
 }
 
+.todo-completed {
+  align-items: center;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  margin: 0.4rem;
+  padding: 0 1rem;
+  text-decoration: line-through;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
 .todo-edit {
   align-items: center;
   background: darkslateblue;
