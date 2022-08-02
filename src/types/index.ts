@@ -1,11 +1,9 @@
 export interface Todo {
   index: number;
-  text: string;
+  text: string | number | readonly string[] | undefined
+  newText: string | number | readonly string[] | undefined
   isCompleted: boolean;
   icon: string;
   cleanInput: string;
-};
-
-export interface AddTodo {
-  text: string;
+  isEditing: boolean;
 };

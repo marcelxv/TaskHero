@@ -2,7 +2,7 @@ h1 {
   color: white;
 }
 
-input {
+.input-form {
   padding: 10px;
   width: 100%;
   border-radius: 6px;
@@ -10,6 +10,23 @@ input {
   border: 3px solid darkslateblue;
   margin: 1rem;
   background-color: rgba(243, 243, 243, 0.452);
+}
+
+.form-edit {
+  width: 50%;
+  margin: 0 0;
+  padding: 0;
+}
+
+.input-edit {
+  padding: 10px;
+  width: 100%;
+  margin: 0;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: darkslateblue;
+  color: white;
+  border: 3px solid darkslateblue;
 }
 
 input:focus {
@@ -56,6 +73,20 @@ input:focus {
   margin: 0.4rem;
   padding: 0 1rem;
 
+}
+
+.todo-edit {
+  align-items: center;
+  background: darkslateblue;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  margin: 0.4rem;
+  padding: 0;
+  color: white;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .btn {

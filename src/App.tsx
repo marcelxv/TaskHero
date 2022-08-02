@@ -23,6 +23,26 @@ function App() {
     }
   };
 
+  const saveTodo = (index: number, text: string | number | readonly string[] | undefined) => {
+    const newTodos = [...todos] as Todo[];
+    newTodos[index].isEditing = false;
+    newTodos[index].text = text;
+    setTodos(newTodos as any);
+  };
+
+  const editTodo = (index: number) => {
+    const newTodos = [...todos] as Todo[];
+    newTodos[index].isEditing = true;
+    setTodos(newTodos as any);
+  };
+
+  const removeTodo = (index: number) => {
+    const newTodos = [...todos] as Todo[];
+    newTodos.splice(index, 1);
+    setTodos(newTodos as any);
+    notify("Tarefa removida", "error");
+  };
+
   const addTodo = (text: string) => {
     const cleanInput = text.toLowerCase().trim();
     const isInvalid = cleanInput.length === 0 || cleanInput.trim() === "";
@@ -36,10 +56,12 @@ function App() {
     } else {
       newTodos.push({
         text,
+        newText: "",
         isCompleted: false,
         icon: "⏳",
         cleanInput: cleanInput.trim(),
-        index: newTodos.length
+        index: newTodos.length,
+        isEditing: false
       });
     setTodos(newTodos as any);
     };
@@ -54,7 +76,7 @@ function App() {
         position="top-center"
       />
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} completeTodo={completeTodo} />
+      <TodoList todos={todos} completeTodo={completeTodo} editTodo={editTodo} saveTodo={saveTodo} removeTodo={removeTodo} />
       <TodoCounter todos={todos} />
     </div>
   );

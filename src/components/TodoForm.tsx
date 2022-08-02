@@ -15,7 +15,7 @@ function TodoForm({addTodo}: {addTodo: (text: string) => void}) {
         <input
           placeholder={`Adicionar tarefa`}
           type="text"
-          className="input"
+          className="input-form"
           value={value}
           onChange={e => setValue(e.target.value)}
         />
