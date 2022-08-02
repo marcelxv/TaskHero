@@ -1,8 +1,9 @@
+import React from "react";
 import { useState } from "react";
 
-function TodoForm({addTodo}) {
+function TodoForm({addTodo}: {addTodo: (text: string) => void}) {
     const [value, setValue] = useState("");
-    const handleSubmit = e => {
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
       e.preventDefault();
       if (!value) return;
       addTodo(value);
@@ -14,11 +15,11 @@ function TodoForm({addTodo}) {
         <input
           placeholder={`Adicionar tarefa`}
           type="text"
-          className="input"
+          className="input-form"
           value={value}
           onChange={e => setValue(e.target.value)}
         />
-        <button disabled={value ? false : true } onClick={handleSubmit} data-testid="add-task-button" className="btn" type="button">Adicionar</button>
+        <button disabled={value ? false : true } data-testid="add-task-button" className="btn" type="submit">Adicionar</button>
       </form>
       
     );

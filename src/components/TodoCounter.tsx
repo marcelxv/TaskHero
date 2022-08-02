@@ -1,8 +1,8 @@
 import React from "react";
 import "../App.css";
+import { Todo } from "../types";
 
-
-function TodoCounter({ todos }) {
+function TodoCounter({ todos: todos }: { todos: Todo[] }) {
     const completedListCounter = todos.filter(todo => todo.isCompleted).length;
     return (
     <div className="counter">
