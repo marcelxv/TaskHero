@@ -39,7 +39,7 @@ return (
     {todo.isEditing ? null : (
     <>
     <button className="btn-check" onClick={()=> completeTodo(index)}>{isCompleted()}</button>
-    <button className="btn-check" onClick={()=> removeTodo(index)}>✖️`</button>
+    <button className="btn-check" onClick={()=> removeTodo(index)}>✖️</button>
     </>
     )}
   </div>
