@@ -12,18 +12,16 @@ return "✅";
 }
 const [value, setValue] = useState(todo.text);
 
-const isChecked = () => {
-return { textDecoration: todo.isCompleted ? "line-through" : "none" }
-}
+
 return (
-<div className={!todo.isEditing ? 'todo' : 'todo-edit'} style={isChecked()}>
+<div className={todoState()}>
   {todo.isEditing ? (
   <div className="form-edit">
     <form onSubmit={e=> {
       e.preventDefault();
       saveTodo(index, value);
       } } />
-      <input type="text" className="input-edit" value={value} onChange={e=> setValue(e.target.value)} />
+      <input title="edit-input" placeholder="" type="text" className="input-edit" value={value} onChange={e=> setValue(e.target.value)} />
   </div>
   ) : (
   <span>
@@ -32,7 +30,14 @@ return (
   )}
   <div>
     {todo.isEditing ? (
-    <button className="btn-check" onClick={()=> saveTodo(index, value)}>👍🏻</button>
+    <>
+      <button className="btn-check" onClick={() => saveTodo(index, value)}>👍🏻</button>
+      <button className="btn-check" onClick={() => {
+        alert("Tem certeza que deseja cancelar?");
+        setValue(todo.text);
+        saveTodo(index, todo.text);
+        } }>👎🏻</button>
+    </>
     ) : (
     <button className="btn-check" onClick={()=> editTodo(index)}>✏️</button>
     )}
@@ -45,5 +50,15 @@ return (
   </div>
 </div>
 )
+
+  function todoState(): string | undefined {
+    if (todo.isEditing) {
+    return 'todo-edit'
+  } else if (todo.isCompleted && !todo.isEditing) {
+    return 'todo-completed'
+  } else {
+    return 'todo'
+  }
+}
 }
 export default TodoItem;

@@ -38,6 +38,7 @@ function App() {
 
   const removeTodo = (index: number) => {
     const newTodos = [...todos] as Todo[];
+    alert("Tem certeza que deseja remover?");
     newTodos.splice(index, 1);
     setTodos(newTodos as any);
     notify("Tarefa removida", "error");
