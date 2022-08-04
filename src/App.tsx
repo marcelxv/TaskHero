@@ -7,6 +7,8 @@ import TodoCounter from "./components/TodoCounter";
 import notify from "./utils/notify";
 import { ToastContainer } from 'react-toastify';
 import { Todo } from "./types";
+import { ThemeProvider } from 'styled-components';
+import { taskHeroTheme } from "./theme/taskhero-theme";
 
 function App() {
 
@@ -70,6 +72,7 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   return (
+    <ThemeProvider theme={taskHeroTheme}>
     <div className="app">
       <Header/>
       <ToastContainer
@@ -80,6 +83,7 @@ function App() {
       <TodoList todos={todos} completeTodo={completeTodo} editTodo={editTodo} saveTodo={saveTodo} removeTodo={removeTodo} />
       <TodoCounter todos={todos} />
     </div>
+    </ThemeProvider>
   );
 }
 
