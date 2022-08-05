@@ -18,6 +18,7 @@ function App() {
       notify("Tarefa marcada como incompleta", "info");
     } else {
       newTodos[index].isCompleted = true;
+      newTodos.push(newTodos.splice(index, 1)[0]);
       setTodos(newTodos as any);
       notify("Tarefa concluída", "success");
     }
