@@ -8,6 +8,8 @@ interface TodoContextProps {
     removeTodo: (index: number) => void;
     completeTodo: (index: number) => void;
     addTodo: (text: string) => void;
+    editTodo: (index: number) => void;
+    saveTodo: (index: number, text: string | number | readonly string[] | undefined) => void;
 };
 
 const TodoContext = createContext({} as TodoContextProps);
@@ -77,9 +79,22 @@ const TodoContextProvider = ({ children }: {children: React.ReactNode}) => {
         setTodos(newTodos as any);
         };
       }};
+
+      const editTodo = (index: number) => {
+        const newTodos = [...todos] as Todo[];
+        newTodos[index].isEditing = true;
+        setTodos(newTodos as any);
+      };
+
+      const saveTodo = (index: number, text: string | number | readonly string[] | undefined) => {
+        const newTodos = [...todos] as Todo[];
+        newTodos[index].isEditing = false;
+        newTodos[index].text = text;
+        setTodos(newTodos as any);
+      };
     
     return (
-        <TodoContext.Provider value={{ todos, setTodos, removeTodo, completeTodo, addTodo }}>
+        <TodoContext.Provider value={{ todos, setTodos, removeTodo, completeTodo, addTodo, editTodo, saveTodo }}>
             {children}
         </TodoContext.Provider>
     );

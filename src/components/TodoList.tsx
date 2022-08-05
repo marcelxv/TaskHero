@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 
-function TodoList({ editTodo, saveTodo}: { editTodo: (index: number) => void, saveTodo: (index: number, text: string | number | readonly string[] | undefined) => void}) {
+function TodoList() {
   const { todos } = useContext(TodoContext);
   return (
     <div data-testid="todo-list" className="todo-list">{
@@ -12,8 +12,6 @@ function TodoList({ editTodo, saveTodo}: { editTodo: (index: number) => void, sa
           key={key}
           index={key}
           todo={todo}
-          editTodo={editTodo}
-          saveTodo={saveTodo}
         />
         ))
     }

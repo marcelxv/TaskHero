@@ -4,9 +4,8 @@ import Modal from "./Modal";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 
-function TodoItem({ todo, index, editTodo, saveTodo }: {todo: Todo, index: number, editTodo: (index: number) => void, saveTodo: (index: number, text: string | number | readonly string[]
-| undefined) => void  }) {
-  const { removeTodo, completeTodo } = useContext(TodoContext);
+function TodoItem({ todo, index }: {todo: Todo, index: number}) {
+  const { removeTodo, completeTodo, editTodo, saveTodo } = useContext(TodoContext);
 
 const isCompleted = () => {
 if (todo.isCompleted) {
