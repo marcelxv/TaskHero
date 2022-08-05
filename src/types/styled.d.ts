@@ -5,6 +5,7 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     borderRadius: string;
+    fontFamily: string;
 
     colors: {
       primary: string;
@@ -14,6 +15,7 @@ declare module 'styled-components' {
       small: string;
       medium: string;
       large: string;
+      big: string;
     }
   }
 }

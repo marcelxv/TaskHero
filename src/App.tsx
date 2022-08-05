@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import { Todo } from "./types";
 import { ThemeProvider } from 'styled-components';
 import { taskHeroTheme } from "./theme/taskhero-theme";
+import styled from 'styled-components';
 
 function App() {
 
@@ -71,9 +72,19 @@ function App() {
   }};
   const [todos, setTodos] = useState([]);
 
+  const Wrapper = styled.div`
+    height: 100vh;
+    max-width: 350px;
+    margin: 0 auto;
+    font-family: ${props => props.theme.fontFamily};
+    font-size: ${props => props.theme.fontSizes.small};
+    padding: 1rem;
+    background-color: ${props => props.theme.colors.primary};
+  `;
+
   return (
     <ThemeProvider theme={taskHeroTheme}>
-    <div className="app">
+    <Wrapper>
       <Header/>
       <ToastContainer
         theme="dark"
@@ -82,7 +93,7 @@ function App() {
       <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} completeTodo={completeTodo} editTodo={editTodo} saveTodo={saveTodo} removeTodo={removeTodo} />
       <TodoCounter todos={todos} />
-    </div>
+    </Wrapper>
     </ThemeProvider>
   );
 }
