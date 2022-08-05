@@ -24,29 +24,6 @@ function App() {
     setTodos(newTodos as any);
   };
 
-  const addTodo = (text: string) => {
-    const cleanInput = text.toLowerCase().trim();
-    const isInvalid = cleanInput.length === 0 || cleanInput.trim() === "";
-    if (isInvalid) {
-      notify("Digite algo!", "error");
-    } else {
-    const newTodos = [...todos] as Todo[];
-    const isDuplicated = newTodos.some(todo => todo.cleanInput === cleanInput);
-    if (isDuplicated) {
-      notify("Tarefa já existe", "error");
-    } else {
-      newTodos.push({
-        text,
-        newText: "",
-        isCompleted: false,
-        icon: "⏳",
-        cleanInput: cleanInput.trim(),
-        index: newTodos.length,
-        isEditing: false
-      });
-    setTodos(newTodos as any);
-    };
-  }};
   const [todos, setTodos] = useState([]);
 
   return (
@@ -57,7 +34,7 @@ function App() {
         theme="dark"
         position="top-center"
       />
-      <TodoForm addTodo={addTodo} />
+      <TodoForm/>
       <TodoList editTodo={editTodo} saveTodo={saveTodo}/>
       <TodoCounter/>
     </div>

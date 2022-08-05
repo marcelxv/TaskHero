@@ -7,6 +7,7 @@ interface TodoContextProps {
     setTodos: (todos: Todo[]) => void;
     removeTodo: (index: number) => void;
     completeTodo: (index: number) => void;
+    addTodo: (text: string) => void;
 };
 
 const TodoContext = createContext({} as TodoContextProps);
@@ -52,9 +53,33 @@ const TodoContextProvider = ({ children }: {children: React.ReactNode}) => {
           notify("Tarefa concluída", "success");
         }
       };
+
+      const addTodo = (text: string) => {
+        const cleanInput = text.toLowerCase().trim();
+        const isInvalid = cleanInput.length === 0 || cleanInput.trim() === "";
+        if (isInvalid) {
+          notify("Digite algo!", "error");
+        } else {
+        const newTodos = [...todos] as Todo[];
+        const isDuplicated = newTodos.some(todo => todo.cleanInput === cleanInput);
+        if (isDuplicated) {
+          notify("Tarefa já existe", "error");
+        } else {
+          newTodos.push({
+            text,
+            newText: "",
+            isCompleted: false,
+            icon: "⏳",
+            cleanInput: cleanInput.trim(),
+            index: newTodos.length,
+            isEditing: false
+          });
+        setTodos(newTodos as any);
+        };
+      }};
     
     return (
-        <TodoContext.Provider value={{ todos, setTodos, removeTodo, completeTodo }}>
+        <TodoContext.Provider value={{ todos, setTodos, removeTodo, completeTodo, addTodo }}>
             {children}
         </TodoContext.Provider>
     );
