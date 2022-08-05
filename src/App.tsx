@@ -7,6 +7,7 @@ import TodoCounter from "./components/TodoCounter";
 import notify from "./utils/notify";
 import { ToastContainer } from 'react-toastify';
 import { Todo } from "./types";
+import { TodoContextProvider } from "./context/TodoContext";
 
 function App() {
 
@@ -37,13 +38,6 @@ function App() {
     setTodos(newTodos as any);
   };
 
-  const removeTodo = (index: number) => {
-    const newTodos = [...todos] as Todo[];
-    newTodos.splice(index, 1);
-    setTodos(newTodos as any);
-    notify("Tarefa removida", "error");
-  };
-
   const addTodo = (text: string) => {
     const cleanInput = text.toLowerCase().trim();
     const isInvalid = cleanInput.length === 0 || cleanInput.trim() === "";
@@ -70,6 +64,7 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   return (
+    <TodoContextProvider>
     <div className="app">
       <Header/>
       <ToastContainer
@@ -77,9 +72,10 @@ function App() {
         position="top-center"
       />
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} completeTodo={completeTodo} editTodo={editTodo} saveTodo={saveTodo} removeTodo={removeTodo} />
-      <TodoCounter todos={todos} />
+      <TodoList completeTodo={completeTodo} editTodo={editTodo} saveTodo={saveTodo}/>
+      <TodoCounter/>
     </div>
+    </TodoContextProvider>
   );
 }
 
