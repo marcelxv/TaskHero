@@ -75,16 +75,7 @@ input:focus {
   max-height: 30px;
 }
 
-.todo-completed {
-  align-items: center;
-  background: #fff;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-  display: flex;
-  font-size: 1rem;
-  justify-content: space-between;
-  margin: 0.4rem;
-  padding: 0 1rem;
+.todo-completed span{
   text-decoration: line-through;
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -183,4 +174,13 @@ input:focus {
 
 .modal-text {
   font-size: 1rem;
+  color: darkslateblue;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }

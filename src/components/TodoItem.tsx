@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Todo } from "../types";
+import Modal from "./Modal";
 
 function TodoItem({ todo, index, completeTodo, editTodo, saveTodo, removeTodo }: {todo: Todo, index: number, completeTodo: (index:
 number) => void, editTodo: (index: number) => void, saveTodo: (index: number, text: string | number | readonly string[]
@@ -10,26 +11,33 @@ return "🔙";
 }
 return "✅";
 }
+const [modalKind, setModalKind] = useState('');
 
 const [isModalOpen, setIsModalOpen] = useState(false);
-
-const openModal = () => {
-setIsModalOpen(true);
-}
+const openModal = (kind: string) => {
+  if (kind === 'remove') {
+    setIsModalOpen(true);
+    setModalKind('remove');
+  } else if (kind === 'cancel') {
+    setIsModalOpen(true);
+    setModalKind('cancel');
+  } else {
+    setIsModalOpen(true);
+    setModalKind('edit');
+  }
+};
 
 const isTooLong = (text: string) => {
 if (text.length > 20 ) {
 return (
   <>
   <span>{text.substring(0, 20)}</span>
-  <button className="btn-check" onClick={openModal}>➕</button>
+  <button className="btn-check" onClick={() => openModal('readMore')}>...</button>
   </>
 )
 }
 return text;
 }
-
-
 
 
 const isEditable = () => {
@@ -62,11 +70,7 @@ return (
     {todo.isEditing ? (
     <>
       <button className="btn-check" onClick={() => saveTodo(index, value)}>👍🏻</button>
-      <button className="btn-check" onClick={() => {
-        alert("Tem certeza que deseja cancelar?");
-        setValue(todo.text);
-        saveTodo(index, todo.text);
-        } }>👎🏻</button>
+      <button className="btn-check" onClick={() => {openModal('cancel')} }>👎🏻</button>
     </>
     ) : (
       isEditable()
@@ -74,21 +78,16 @@ return (
     {todo.isEditing ? null : (
     <>
     <button className="btn-check" onClick={()=> completeTodo(index)}>{isCompleted()}</button>
-    <button className="btn-check" onClick={()=> removeTodo(index)}>✖️</button>
+    <button className="btn-check" onClick={() => openModal('remove')}>✖️</button>
     </>
     )}
   </div>
+  
+  
   {isModalOpen ? (
-  <div className="modal">
-  <div className="modal-content">
-    <span className="close" onClick={()=> setIsModalOpen(false)}>&times;</span>
-    <p className="modal-text">{todo.text}</p>
-    <button className="btn-check" onClick={()=> removeTodo(index)}>✖️</button>
-    <button className="btn-check" onClick={()=> completeTodo(index)}>{isCompleted()}</button>
-
-  </div>
-</div>
+  <Modal todo={todo} text={todo.text} modalKind={modalKind} setIsModalOpen={setIsModalOpen} removeTodo={removeTodo} index={index} />
   ) : null}
+
 </div>
 )
 
@@ -96,7 +95,7 @@ return (
     if (todo.isEditing) {
     return 'todo-edit'
   } else if (todo.isCompleted && !todo.isEditing) {
-    return 'todo-completed'
+    return `todo todo-completed`
   } else {
     return 'todo'
   }
