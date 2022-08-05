@@ -11,20 +11,6 @@ import { TodoContextProvider } from "./context/TodoContext";
 
 function App() {
 
-  const completeTodo = (index: number) => {
-    const newTodos = [...todos] as Todo[];
-    if (newTodos[index].isCompleted) {
-      newTodos[index].isCompleted = false;
-      setTodos(newTodos as any);
-      notify("Tarefa marcada como incompleta", "info");
-    } else {
-      newTodos[index].isCompleted = true;
-      newTodos.push(newTodos.splice(index, 1)[0]);
-      setTodos(newTodos as any);
-      notify("Tarefa concluída", "success");
-    }
-  };
-
   const saveTodo = (index: number, text: string | number | readonly string[] | undefined) => {
     const newTodos = [...todos] as Todo[];
     newTodos[index].isEditing = false;
@@ -72,7 +58,7 @@ function App() {
         position="top-center"
       />
       <TodoForm addTodo={addTodo} />
-      <TodoList completeTodo={completeTodo} editTodo={editTodo} saveTodo={saveTodo}/>
+      <TodoList editTodo={editTodo} saveTodo={saveTodo}/>
       <TodoCounter/>
     </div>
     </TodoContextProvider>

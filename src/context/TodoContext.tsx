@@ -6,6 +6,7 @@ interface TodoContextProps {
     todos: Todo[];
     setTodos: (todos: Todo[]) => void;
     removeTodo: (index: number) => void;
+    completeTodo: (index: number) => void;
 };
 
 const TodoContext = createContext({} as TodoContextProps);
@@ -37,9 +38,23 @@ const TodoContextProvider = ({ children }: {children: React.ReactNode}) => {
         setTodos(newTodos as any);
         notify("Tarefa removida", "error");
       };
+
+      const completeTodo = (index: number) => {
+        const newTodos = [...todos] as Todo[];
+        if (newTodos[index].isCompleted) {
+          newTodos[index].isCompleted = false;
+          setTodos(newTodos as any);
+          notify("Tarefa marcada como incompleta", "info");
+        } else {
+          newTodos[index].isCompleted = true;
+          newTodos.push(newTodos.splice(index, 1)[0]);
+          setTodos(newTodos as any);
+          notify("Tarefa concluída", "success");
+        }
+      };
     
     return (
-        <TodoContext.Provider value={{ todos, setTodos, removeTodo }}>
+        <TodoContext.Provider value={{ todos, setTodos, removeTodo, completeTodo }}>
             {children}
         </TodoContext.Provider>
     );
