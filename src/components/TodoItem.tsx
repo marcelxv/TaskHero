@@ -10,8 +10,38 @@ return "🔙";
 }
 return "✅";
 }
-const [value, setValue] = useState(todo.text);
 
+const [isModalOpen, setIsModalOpen] = useState(false);
+
+const openModal = () => {
+setIsModalOpen(true);
+}
+
+const isTooLong = (text: string) => {
+if (text.length > 20 ) {
+return (
+  <>
+  <span>{text.substring(0, 20)}</span>
+  <button className="btn-check" onClick={openModal}>➕</button>
+  </>
+)
+}
+return text;
+}
+
+
+
+
+const isEditable = () => {
+  if (!todo.isCompleted) {
+    return ( 
+    <button className="btn-check" onClick={()=> editTodo(index)}>✏️</button>
+    );
+  } else {
+    return null
+  }
+};
+const [value, setValue] = useState(todo.text);
 
 return (
 <div className={todoState()}>
@@ -24,11 +54,11 @@ return (
       <input title="edit-input" placeholder="" type="text" className="input-edit" value={value} onChange={e=> setValue(e.target.value)} />
   </div>
   ) : (
-  <span>
-    {todo.text}
+  <span className="todo-input">
+    {isTooLong(todo.text as any)}
   </span>
   )}
-  <div>
+  <div className="buttons">
     {todo.isEditing ? (
     <>
       <button className="btn-check" onClick={() => saveTodo(index, value)}>👍🏻</button>
@@ -39,7 +69,7 @@ return (
         } }>👎🏻</button>
     </>
     ) : (
-    <button className="btn-check" onClick={()=> editTodo(index)}>✏️</button>
+      isEditable()
     )}
     {todo.isEditing ? null : (
     <>
@@ -48,6 +78,17 @@ return (
     </>
     )}
   </div>
+  {isModalOpen ? (
+  <div className="modal">
+  <div className="modal-content">
+    <span className="close" onClick={()=> setIsModalOpen(false)}>&times;</span>
+    <p className="modal-text">{todo.text}</p>
+    <button className="btn-check" onClick={()=> removeTodo(index)}>✖️</button>
+    <button className="btn-check" onClick={()=> completeTodo(index)}>{isCompleted()}</button>
+
+  </div>
+</div>
+  ) : null}
 </div>
 )
 
