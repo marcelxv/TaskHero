@@ -53,17 +53,17 @@ function TodoForm() {
     }
   `;
 
-  const FormTodo = {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: space-between;
-    // padding: 1rem;
-    // background-color: ${(props) => props.theme.colors.secondary};
-  };
+  // const FormTodo = {
+  //   // display: flex;
+  //   // flex-direction: column;
+  //   // align-items: center;
+  //   // justify-content: space-between;
+  //   // padding: 1rem;
+  //   // background-color: ${(props) => props.theme.colors.secondary};
+  // };
 
   return (
-  <div className="todo"> 
+  <section className="todo-form-wrapper"> 
     {/* bug do styled-component */}
     <form className="todo-form" onSubmit={handleSubmit}>
       <input
@@ -82,12 +82,12 @@ function TodoForm() {
         Adicionar
       </button>
       <TagSelector>
-        <Tag onClick={() => setPrior('high')}>Importante</Tag>
-        <Tag onClick={() => setPrior('normal')}>Normal</Tag>
-        <Tag onClick={() => setPrior('low')}>Tranquilo</Tag>
+        <Tag onClick={() => setPrior('high')}>Importante 🔺</Tag>
+        <Tag onClick={() => setPrior('normal')}>Normal 🔹</Tag>
+        <Tag onClick={() => setPrior('low')}>Tranquilo 🟢</Tag>
       </TagSelector>
     </form>
-  </div>
+  </section>
 );
 }
 export default TodoForm;

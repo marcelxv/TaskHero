@@ -33,7 +33,6 @@ h1 {
 }
 
 .input-form.low {
-  width: 100%;
   padding: 10px;
   border-radius: 6px;
   font-size: 14px;
@@ -43,7 +42,6 @@ h1 {
 }
 
 .input-form.high {
-  width: 100%;
   padding: 10px;
   border-radius: 6px;
   font-size: 14px;
@@ -53,7 +51,6 @@ h1 {
 }
 
 .input-form.normal {
-  width: 100%;
   padding: 10px;
   border-radius: 6px;
   font-size: 14px;
@@ -102,17 +99,25 @@ input:focus {
   padding: 5px;
 }
 
+.todo-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  background-color: white;
+}
+
 .todo-form {
   display: flex;
   flex-direction: column;
-  background: white;
   color: darkslateblue;
-  margin: 0 auto;
+  margin: 2rem auto;
   border-radius: 4px;
   padding: 5px;
   justify-content: center;
   align-items: center;
-  width: 360px;
 }
 
 .todo {
