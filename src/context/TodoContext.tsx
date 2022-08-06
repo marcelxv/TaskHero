@@ -1,7 +1,6 @@
 import React, { createContext, useState } from "react";
 import { Todo } from "../types";
 import notify from "../utils/notify";
-import MOCKET_DATA from "../mocks";
 
 interface TodoContextProps {
   todos: Todo[];
@@ -38,7 +37,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
       notify("Tarefa marcada como incompleta", "info");
     } else {
       newTodos[index].isCompleted = true;
-      newTodos.push(newTodos.splice(index, 1)[0]);
+      // newTodos.push(newTodos.splice(index, 1)[0]);
       setTodos(newTodos as any);
       notify("Tarefa concluída", "success");
     }

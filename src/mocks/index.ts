@@ -7,6 +7,7 @@ const MOCKET_DATA = [
     cleanInput: "eita",
     index: 0,
     isEditing: false,
+    priority: "low",
   },
   {
     text: "este aplicativo é muito massa",
@@ -14,8 +15,9 @@ const MOCKET_DATA = [
     isCompleted: false,
     icon: "⏳",
     cleanInput: "este aplicativo é muito massa",
-    index: 2,
+    index: 1,
     isEditing: false,
+    priority: "low",
   },
   {
     text: "Mais um todo",
@@ -23,8 +25,10 @@ const MOCKET_DATA = [
     isCompleted: false,
     icon: "⏳",
     cleanInput: "mais um todo",
-    index: 4,
+    index: 2,
     isEditing: false,
+    priority: "normal",
+
   },
   {
     text: "Ser triste, faz parte",
@@ -32,8 +36,10 @@ const MOCKET_DATA = [
     isCompleted: false,
     icon: "⏳",
     cleanInput: "ser triste, faz parte",
-    index: 7,
+    index: 3,
     isEditing: false,
+    priority: "high",
+
   },
   {
     text: "Eu quero riscar todas as tasks um dia...",
@@ -41,8 +47,10 @@ const MOCKET_DATA = [
     isCompleted: false,
     icon: "⏳",
     cleanInput: "eu quero riscar todas as tasks um dia...",
-    index: 8,
+    index: 4,
     isEditing: false,
+    priority: "normal",
+
   },
   {
     text: "Ver algum jogo da copa",
@@ -50,8 +58,9 @@ const MOCKET_DATA = [
     isCompleted: false,
     icon: "⏳",
     cleanInput: "ver algum jogo da copa",
-    index: 10,
+    index: 5,
     isEditing: false,
+    priority: "normal",
   },
   {
     text: "Isso pode ser um bucket list",
@@ -59,8 +68,10 @@ const MOCKET_DATA = [
     isCompleted: false,
     icon: "⏳",
     cleanInput: "isso pode ser um bucket list",
-    index: 11,
+    index: 6,
     isEditing: false,
+    priority: "high",
+
   },
   {
     text: "Ser feliz",
@@ -68,8 +79,10 @@ const MOCKET_DATA = [
     isCompleted: true,
     icon: "⏳",
     cleanInput: "ser feliz",
-    index: 6,
+    index: 7,
     isEditing: false,
+    priority: "low",
+
   },
   {
     text: "Será que vou conseguir?",
@@ -77,8 +90,9 @@ const MOCKET_DATA = [
     isCompleted: true,
     icon: "⏳",
     cleanInput: "será que vou conseguir?",
-    index: 9,
+    index: 8,
     isEditing: false,
+    priority: "",
   },
   {
     text: "Fazer café!",
@@ -86,8 +100,10 @@ const MOCKET_DATA = [
     isCompleted: true,
     icon: "⏳",
     cleanInput: "fazer café!",
-    index: 3,
+    index: 9,
     isEditing: false,
+    priority: "normal",
+
   },
   {
     text: "Este é um exemplo de task",
@@ -95,8 +111,10 @@ const MOCKET_DATA = [
     isCompleted: true,
     icon: "⏳",
     cleanInput: "este é um exemplo de task",
-    index: 1,
+    index: 10,
     isEditing: false,
+    priority: "normal",
+
   },
   {
     text: "Levar o cachorro para passear",
@@ -104,8 +122,10 @@ const MOCKET_DATA = [
     isCompleted: true,
     icon: "⏳",
     cleanInput: "levar o cachorro para passear",
-    index: 5,
-    isEditing: false,
+    index: 11,
+    isEditing: true,
+    priority: "normal",
+
   },
     {
     text: "Este é um exemplo de task",
@@ -113,8 +133,9 @@ const MOCKET_DATA = [
     isCompleted: true,
     icon: "⏳",
     cleanInput: "este é um exemplo de task",
-    index: 6,
+    index: 12,
     isEditing: false,
+    priority: "",
     },
 ];
 

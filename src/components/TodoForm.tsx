@@ -9,10 +9,12 @@ function TodoForm() {
   const [value, setValue] = useState("");
   const [prior, setPrior] = useState("");
 
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     addTodo(value, prior);
     setValue("");
+    setPrior("");
   };
 
   const setPriorOnInput = () => {
@@ -39,7 +41,7 @@ function TodoForm() {
   const Tag = styled.button`
     cursor: pointer;
     border: 2px solid ${(props) => props.theme.colors.primary};
-    background-color: ${(props) => props.theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.secondary}
     color: ${(props) => props.theme.colors.primary};
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
@@ -84,7 +86,7 @@ function TodoForm() {
       <TagSelector>
         <Tag onClick={() => setPrior('high')}>Importante 🔺</Tag>
         <Tag onClick={() => setPrior('normal')}>Normal 🔹</Tag>
-        <Tag onClick={() => setPrior('low')}>Tranquilo 🟢</Tag>
+        <Tag onClick={() => setPrior('low')}>Baixa Prioridade 🟢</Tag>
       </TagSelector>
     </form>
   </section>

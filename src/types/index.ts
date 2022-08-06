@@ -6,7 +6,7 @@ export interface Todo {
   icon: string;
   cleanInput: string;
   isEditing: boolean;
-  priority: string;
+  priority: string | number | readonly string[] | undefined;
 }
 
 // export interface TodoContext {
