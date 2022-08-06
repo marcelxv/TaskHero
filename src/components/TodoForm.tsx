@@ -31,7 +31,6 @@ function TodoForm() {
   }
   
   const TagSelector = styled.div`
-    height: 2rem;
     border: none;
     font-size: 1rem;
     font-family: ${(props) => props.theme.fontFamily};

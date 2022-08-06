@@ -5,7 +5,7 @@ import TodoContext from "../context/TodoContext";
 
 function TodoList() {
   const { todos } = useContext(TodoContext);
-  const [selectedPrior, setSelectedPrior] = React.useState(['all'] as string[]);
+  const [selectedPrior, setSelectedPrior] = React.useState(['high', 'normal', 'low', ''] as string[]);
 
   const filterTodos = (todos: any[]) => {
     const newTodos = todos.filter((todo) => selectedPrior.includes(todo.priority));
