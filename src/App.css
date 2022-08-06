@@ -2,6 +2,12 @@ h1 {
   color: white;
 }
 
+.filter-selector {
+  border: none;
+  background: none;
+  outline: none;
+}
+
 .modal {
   position: fixed;
   z-index: 1;
@@ -23,6 +29,7 @@ h1 {
 }
 
 .input-form {
+  width: 60%;
   padding: 10px;
   border-radius: 6px;
   font-size: 14px;
@@ -100,10 +107,9 @@ input:focus {
 
 .todo-form-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 100%;
   margin: 0;
   background-color: white;
 }
@@ -112,11 +118,12 @@ input:focus {
   display: flex;
   flex-direction: column;
   color: darkslateblue;
-  margin: 2rem auto;
   border-radius: 4px;
   padding: 5px;
   justify-content: center;
   align-items: center;
+  width: 100%;
+
 }
 
 .todo {

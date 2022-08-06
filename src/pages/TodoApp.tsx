@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
   font-family: ${props => props.theme.fontFamily};
   font-size: ${props => props.theme.fontSizes.small};
-  padding: 1rem;
   background-color: ${props => props.theme.colors.primary};
   `;
 
@@ -21,7 +20,7 @@ function TodoApp() {
   return (
     <>
     <Wrapper>
-      <Header />
+      <Header emoji='🦸' />
       <ToastContainer theme="dark" position="top-center" />
       <TodoForm />
       <TodoList />

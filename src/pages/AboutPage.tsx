@@ -1,13 +1,12 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
+import Header from '../components/Header'
 
 function AboutPage() {
   return (
     <>
-        <div>
-            <h1>AboutPage</h1>
-        </div>
-        <NavBar/>
+      <Header emoji='🦹' />
+      <NavBar/>
     </>
   )
 }

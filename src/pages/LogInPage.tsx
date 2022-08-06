@@ -1,8 +1,14 @@
 import React from 'react'
-
+import NavBar from '../components/NavBar'
+import UserForm from '../components/UserForm'
+import Header from '../components/Header'
 function LogInPage() {
   return (
-    <div>LogInPage</div>
+    <>
+    <Header emoji='🦸🏿‍♂️' />
+    <UserForm/>
+    <NavBar/>
+    </>
   )
 }
 

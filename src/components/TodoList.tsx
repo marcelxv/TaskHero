@@ -2,6 +2,7 @@ import React from "react";
 import TodoItem from "./TodoItem";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
+import "../App.css"
 
 function TodoList() {
   const { todos } = useContext(TodoContext);
@@ -23,12 +24,14 @@ function TodoList() {
   return (
     <>
     <div data-testid="todo-list" className="todo-list">
-    <select onChange={handleChange} title="selectFilter">
+      <label htmlFor="">Filtrar por: 
+    <select className="filter-selector" onChange={handleChange} title="selectFilter">
         <option value="all" selected>Todas</option>
-        <option value="low">Baixa prioridade</option>
-        <option value="normal">Normais</option>
-        <option value="high">Importantes</option>
+        <option value="low">Baixa Prioridade 🟢</option>
+        <option value="normal">Normais 🔹</option>
+        <option value="high">Importantes 🔺</option>
       </select>
+      </label>
       {filterTodos(todos).map((todo, key) => (
         <TodoItem key={key} index={todo.index} todo={todo} />
       ))}

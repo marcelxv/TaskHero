@@ -21,10 +21,10 @@ const Nav = styled.section`
   `;
 
 
-function Header() {
+function Header({ emoji }: { emoji: string }) {
   return (
     <Nav>
-      <h1>TaskHero 🦸</h1>
+      <h1>TaskHero {emoji} </h1>
       <a href="https://github.com/marcelxv">marcelxv</a>
     </Nav>
   );

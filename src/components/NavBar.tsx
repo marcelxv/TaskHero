@@ -17,6 +17,9 @@ const Tag = styled.button`
     background-color: ${(props) => props.theme.colors.primary};
     color: ${(props) => props.theme.colors.secondary};
     }
+    &.selected {
+    background-color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.secondary};
     `;
 
 const NavBarWrapper = styled.div`
@@ -36,12 +39,17 @@ const NavBarWrapper = styled.div`
 function NavBar() {
     const navigate = useNavigate()
     const location = useLocation()
+    const pathMatchRoute = (path: string) => {
+        if (path === location.pathname) {
+            return true
+        }
+    }
 
   return (
     <NavBarWrapper>
-    <Tag onClick={() => navigate('/app')}>Go to App</Tag>
-    <Tag onClick={() => navigate('/about')}>Go to AboutPage</Tag>
-    <Tag onClick={() => navigate('/login')}>Go to Login Page</Tag>  
+    <Tag className={pathMatchRoute('/app') ? 'selected' : ''} onClick={() => navigate('/app')}>Go to App</Tag>
+    <Tag className={pathMatchRoute('/about') ? 'selected' : ''} onClick={() => navigate('/about')}>Go to AboutPage</Tag>
+    <Tag className={pathMatchRoute('/login') ? 'selected' : ''} onClick={() => navigate('/login')}>Go to Login Page</Tag>  
     </NavBarWrapper>
     )
 }

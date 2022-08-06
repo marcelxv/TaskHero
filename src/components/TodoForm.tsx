@@ -31,6 +31,11 @@ function TodoForm() {
   }
   
   const TagSelector = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     border: none;
     font-size: 1rem;
     font-family: ${(props) => props.theme.fontFamily};
@@ -44,11 +49,15 @@ function TodoForm() {
     color: ${(props) => props.theme.colors.primary};
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
-    margin-right: 0.5rem;
+    margin: 0.5rem;
     font-size: ${(props) => props.theme.fontSizes.small};
     font-family: ${(props) => props.theme.fontFamily};
     }
     &:hover {
+      background-color: ${(props) => props.theme.colors.primary};
+      color: ${(props) => props.theme.colors.secondary};
+    }
+    &.selected {
       background-color: ${(props) => props.theme.colors.primary};
       color: ${(props) => props.theme.colors.secondary};
     }
@@ -67,6 +76,7 @@ function TodoForm() {
   <section className="todo-form-wrapper"> 
     {/* bug do styled-component */}
     <form className="todo-form" onSubmit={handleSubmit}>
+    <h3>Descreva a tarefa</h3>
       <input
         name="todo"
         placeholder={`Adicionar tarefa`}
@@ -82,10 +92,11 @@ function TodoForm() {
       >
         Adicionar
       </button>
+      <h3>Informe a prioridade</h3>
       <TagSelector>
-        <Tag onClick={() => setPrior('high')}>Importante 🔺</Tag>
-        <Tag onClick={() => setPrior('normal')}>Normal 🔹</Tag>
-        <Tag onClick={() => setPrior('low')}>Baixa Prioridade 🟢</Tag>
+        <Tag className={prior === "high" ? "selected" : ""} onClick={() => setPrior('high')}>🔺</Tag>
+        <Tag className={prior === "normal" ? "selected" : ""} onClick={() => setPrior('normal')}>🔹</Tag>
+        <Tag className={prior === "low" ? "selected" : ""} onClick={() => setPrior('low')}>🟢</Tag>
       </TagSelector>
     </form>
   </section>
