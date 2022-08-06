@@ -38,7 +38,7 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
           />
         </div>
       ) : (
-        <span className="todo-input">{isTooLong(todo.text as any)}</span>
+        <span className="todo-input">{isTooLong(todo.text as any)}{setPriorEmoji()}</span>
       )}
       <div className="buttons">
         {todo.isEditing ? (
@@ -107,6 +107,19 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
         return null;
       }
     };
+  }
+
+  function setPriorEmoji () {
+    switch (todo.priority) {
+      case "low":
+        return "  🟢";
+      case "normal":
+        return "  🔹";
+      case "high":
+        return "  🔺";
+      default:
+        return "";
+    }
   }
 
   function handleTextInput() {

@@ -14,8 +14,7 @@ function App() {
 
 
   const Wrapper = styled.div`
-    height: 100vh;
-    max-width: 350px;
+    min-height: 100vh;
     margin: 0 auto;
     font-family: ${props => props.theme.fontFamily};
     font-size: ${props => props.theme.fontSizes.small};
@@ -34,7 +33,8 @@ function App() {
           <TodoCounter />
     </Wrapper>
     </ThemeProvider>
-    </TodoContextProvider>    
+    </TodoContextProvider>
+    
   );
 }
 export default App;

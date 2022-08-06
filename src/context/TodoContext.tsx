@@ -1,13 +1,14 @@
 import React, { createContext, useState } from "react";
 import { Todo } from "../types";
 import notify from "../utils/notify";
+import MOCKET_DATA from "../mocks";
 
 interface TodoContextProps {
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
   removeTodo: (index: number) => void;
   completeTodo: (index: number) => void;
-  addTodo: (text: string) => void;
+  addTodo: (text: string, prior: string) => void;
   editTodo: (index: number) => void;
   saveTodo: (
     index: number,
@@ -19,6 +20,9 @@ const TodoContext = createContext({} as TodoContextProps);
 
 const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
+
+  // Functions
+
   const removeTodo = (index: number) => {
     const newTodos = [...todos] as Todo[];
     newTodos.splice(index, 1);
@@ -40,7 +44,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const addTodo = (text: string) => {
+  const addTodo = (text: string, prior: string) => {
     const cleanInput = text.toLowerCase().trim();
     const isInvalid = cleanInput.length === 0 || cleanInput.trim() === "";
     if (isInvalid) {
@@ -61,6 +65,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
           cleanInput: cleanInput.trim(),
           index: newTodos.length,
           isEditing: false,
+          priority: prior
         });
         setTodos(newTodos as any);
       }
@@ -99,15 +104,6 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     </TodoContext.Provider>
   );
 };
-
-// const TodoContextProvider: React.FC = ({ children }) => {
-//     const [todos, setTodos] = useState([]);
-//     return (
-//         <TodoContext.Provider value={{ todos, setTodos }}>
-//             {children}
-//         </TodoContext.Provider>
-//     );
-// }
 
 export default TodoContext;
 export { TodoContextProvider };

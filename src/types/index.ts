@@ -6,13 +6,7 @@ export interface Todo {
   icon: string;
   cleanInput: string;
   isEditing: boolean;
-}
-
-export interface TodoList {
-  todos: Todo[];
-  isCompleted: boolean;
-  isAllCompleted: boolean;
-  isAllUnCompleted: boolean;
+  priority: string;
 }
 
 // export interface TodoContext {
