@@ -9,6 +9,7 @@ export interface Todo {
   priority: string | number | readonly string[] | undefined;
 }
 
+
 // export interface TodoContext {
 //   todoList: TodoList;
 //   setTodoList: React.Dispatch<React.SetStateAction<TodoList>>;

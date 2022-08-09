@@ -13,12 +13,15 @@ interface TodoContextProps {
     index: number,
     text: string | number | readonly string[] | undefined
   ) => void;
+  isLogged: boolean;
+  setIsLogged: (isLogged: boolean) => void;
 }
 
 const TodoContext = createContext({} as TodoContextProps);
 
 const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [isLogged, setIsLogged] = useState(false);
 
   // Functions
 
@@ -97,6 +100,8 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         addTodo,
         editTodo,
         saveTodo,
+        isLogged,
+        setIsLogged
       }}
     >
       {children}
