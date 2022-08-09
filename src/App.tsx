@@ -9,6 +9,7 @@ import AboutPage from "./pages/AboutPage";
 import LogInPage from "./pages/LogInPage";
 import TodoApp from "./pages/TodoApp";
 import styled from "styled-components";
+import { app } from "./firebase.config";
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -20,7 +21,7 @@ const PageWrapper = styled.div`
   `;
 
 function App() {
-
+  console.log(app)
   return (
     <TodoContextProvider>
     <ThemeProvider theme={taskHeroTheme}>

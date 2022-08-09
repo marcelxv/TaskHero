@@ -6,7 +6,7 @@ function LogInPage() {
   return (
     <>
     <Header emoji='🦸🏿‍♂️' />
-    <UserForm/>
+    <UserForm formType='login' />
     <NavBar/>
     </>
   )
