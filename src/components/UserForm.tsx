@@ -142,14 +142,14 @@ function UserForm({ formType }: { formType: string }) {
                 </button>
                 <button type="submit">Entrar</button>
               </form>
-              <button type="button" onClick={() => setFormType("register")}>
+              <button type="button" onClick={() => setFormType("signup")}>
                 Criar conta
               </button>
             </div>
           ) : (
             <div>
               <h1>Cadastre-se</h1>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
@@ -178,7 +178,7 @@ function UserForm({ formType }: { formType: string }) {
                 >
                   {showPassword ? "Ocultar" : "Mostrar"}
                 </button>
-                <button type="submit">Cadastrar</button>
+                <button type="submit" onClick={() => handleSubmit}>Cadastrar</button>
                 <button
                   type="button"
                   className="btn-check"
