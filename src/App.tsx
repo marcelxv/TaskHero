@@ -1,24 +1,43 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
-import TodoCounter from "./components/TodoCounter";
-import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from 'styled-components';
+import { taskHeroTheme } from "./theme/taskhero-theme";
 import { TodoContextProvider } from "./context/TodoContext";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import LogInPage from "./pages/LogInPage";
+import TodoApp from "./pages/TodoApp";
+import styled from "styled-components";
+import { app } from "./firebase.config";
+
+const PageWrapper = styled.div`
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: ${props => props.theme.fontFamily};
+  font-size: ${props => props.theme.fontSizes.small};
+  padding: 1rem;
+  background-color: ${props => props.theme.colors.primary};
+  `;
 
 function App() {
+  console.log(app)
   return (
     <TodoContextProvider>
-      <div className="app">
-        <Header />
-        <ToastContainer theme="dark" position="top-center" />
-        <TodoForm />
-        <TodoList />
-        <TodoCounter />
-      </div>
+    <ThemeProvider theme={taskHeroTheme}>
+    <PageWrapper>
+      <Router>
+        <Routes>
+          <Route path="/app" element={<TodoApp/>} />
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/login" element={<LogInPage />} />
+        </Routes>
+      </Router>
+    </PageWrapper>
+    </ThemeProvider>
     </TodoContextProvider>
+    
   );
 }
-
 export default App;

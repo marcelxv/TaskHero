@@ -9,54 +9,14 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
     TodoContext
   );
 
-  const isCompleted = () => {
-    if (todo.isCompleted) {
-      return "🔙";
-    }
-    return "✅";
-  };
   const [modalKind, setModalKind] = useState("");
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = (kind: string) => {
-    if (kind === "remove") {
-      setIsModalOpen(true);
-      setModalKind("remove");
-    } else if (kind === "cancel") {
-      setIsModalOpen(true);
-      setModalKind("cancel");
-    } else {
-      setIsModalOpen(true);
-      setModalKind("edit");
-    }
-  };
-
-  const isTooLong = (text: string) => {
-    if (text.length > 20) {
-      return (
-        <>
-          <span>{text.substring(0, 20)}</span>
-          <button className="btn-check" onClick={() => openModal("readMore")}>
-            ...
-          </button>
-        </>
-      );
-    }
-    return text;
-  };
-
-  const isEditable = () => {
-    if (!todo.isCompleted) {
-      return (
-        <button className="btn-check" onClick={() => editTodo(index)}>
-          ✏️
-        </button>
-      );
-    } else {
-      return null;
-    }
-  };
   const [value, setValue] = useState(todo.text);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isCompleted = handleComplete();
+  const openModal = handleModal();
+  const isTooLong = handleTextInput();
+  const isEditable = handleEdit();
 
   return (
     <div className={todoState()}>
@@ -78,7 +38,7 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
           />
         </div>
       ) : (
-        <span className="todo-input">{isTooLong(todo.text as any)}</span>
+        <span className="todo-input">{isTooLong(todo.text as any)}{setPriorEmoji()}</span>
       )}
       <div className="buttons">
         {todo.isEditing ? (
@@ -125,6 +85,73 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
       ) : null}
     </div>
   );
+
+  function handleComplete() {
+    return () => {
+      if (todo.isCompleted) {
+        return "🔙";
+      }
+      return "✅";
+    };
+  }
+
+  function handleEdit() {
+    return () => {
+      if (!todo.isCompleted) {
+        return (
+          <button className="btn-check" onClick={() => editTodo(index)}>
+            ✏️
+          </button>
+        );
+      } else {
+        return null;
+      }
+    };
+  }
+
+  function setPriorEmoji () {
+    switch (todo.priority) {
+      case "low":
+        return "  🟢";
+      case "normal":
+        return "  🔹";
+      case "high":
+        return "  🔺";
+      default:
+        return "";
+    }
+  }
+
+  function handleTextInput() {
+    return (text: string) => {
+      if (text.length > 20) {
+        return (
+          <>
+            <span>{text.substring(0, 20)}</span>
+            <button className="btn-check" onClick={() => openModal("readMore")}>
+              ...
+            </button>
+          </>
+        );
+      }
+      return text;
+    };
+  }
+
+  function handleModal() {
+    return (kind: string) => {
+      if (kind === "remove") {
+        setIsModalOpen(true);
+        setModalKind("remove");
+      } else if (kind === "cancel") {
+        setIsModalOpen(true);
+        setModalKind("cancel");
+      } else {
+        setIsModalOpen(true);
+        setModalKind("edit");
+      }
+    };
+  }
 
   function todoState(): string | undefined {
     if (todo.isEditing) {
