@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import { Todo } from "../types";
 import notify from "../utils/notify";
-
+import MOCKET_DATA from '../mocks';
 interface TodoContextProps {
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
@@ -20,7 +20,7 @@ interface TodoContextProps {
 const TodoContext = createContext({} as TodoContextProps);
 
 const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(MOCKET_DATA);
   const [isLogged, setIsLogged] = useState(false);
 
   // Functions
