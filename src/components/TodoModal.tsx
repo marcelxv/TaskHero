@@ -44,14 +44,6 @@ function TodoModal({
                 <span>CEP</span>
               </label>
               <input placeholder="Digite o CEP da Task" title="CEP" type="text" onChange={(e) => setZipCode(e.target.value)} />
-              <button
-                className="btn-check"
-                onClick={(e) => {
-                  handleSubmit(e);
-                }}
-              >
-                Salvar
-              </button>
             </form>
           </div>
         ) : (
