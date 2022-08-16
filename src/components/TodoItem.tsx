@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Todo } from "../types";
-import Modal from "./Modal";
+import Modal from "./ActionModal";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 

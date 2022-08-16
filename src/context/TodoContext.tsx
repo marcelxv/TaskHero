@@ -7,7 +7,7 @@ interface TodoContextProps {
   setTodos: (todos: Todo[]) => void;
   removeTodo: (index: number) => void;
   completeTodo: (index: number) => void;
-  addTodo: (text: string, prior: string) => void;
+  addTodo: (text: string, prior: string, address: string, zipCode: string, time: string, date: string) => void;
   editTodo: (index: number) => void;
   saveTodo: (
     index: number,
@@ -46,7 +46,8 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const addTodo = (text: string, prior: string) => {
+
+  const addTodo = (text: string, prior: string, address: string, zipCode: string, time: string, date: string) => {
     const cleanInput = text.toLowerCase().trim();
     const isInvalid = cleanInput.length === 0 || cleanInput.trim() === "";
     if (isInvalid) {
@@ -67,7 +68,11 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
           cleanInput: cleanInput.trim(),
           index: newTodos.length,
           isEditing: false,
-          priority: prior
+          priority: prior,
+          address: address,
+          zipCode: zipCode,
+          time: time,
+          date: date,
         });
         setTodos(newTodos as any);
       }
@@ -101,7 +106,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         editTodo,
         saveTodo,
         isLogged,
-        setIsLogged
+        setIsLogged,
       }}
     >
       {children}

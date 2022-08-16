@@ -3,18 +3,34 @@ import { useState } from "react";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 import styled from "styled-components";
+import AddressModal from "./TodoModal";
 
 function TodoForm() {
   const { addTodo } = useContext(TodoContext);
   const [value, setValue] = useState("");
   const [prior, setPrior] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ModalTitle, setModalTitle] = useState("");
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
+  const [address, setAddress] = useState("");
+  const [zipCode, setZipCode] = useState("");
 
+  const handleModal = (kind: string) => {
+    setModalTitle(kind);
+    setIsModalOpen(true);
+  }    
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    addTodo(value, prior);
+    addTodo(value, prior, address, zipCode, date, time);
     setValue("");
     setPrior("");
+    setTime("");
+    setDate("");
+    setAddress("");
+    setZipCode("");
+    setModalTitle("");
   };
 
   const setPriorOnInput = () => {
@@ -92,12 +108,33 @@ function TodoForm() {
       >
         Adicionar
       </button>
+      <TagSelector>
+        <Tag onClick={() => handleModal("Data")}>📅</Tag>
+        <Tag onClick={() => handleModal("Local")}>📍</Tag>
+      </TagSelector>
       <h3>Informe a prioridade</h3>
       <TagSelector>
         <Tag className={prior === "high" ? "selected" : ""} onClick={() => setPrior('high')}>🔺</Tag>
         <Tag className={prior === "normal" ? "selected" : ""} onClick={() => setPrior('normal')}>🔹</Tag>
         <Tag className={prior === "low" ? "selected" : ""} onClick={() => setPrior('low')}>🟢</Tag>
       </TagSelector>
+        <div>
+          {isModalOpen && 
+          <AddressModal
+          setIsModalOpen={setIsModalOpen}
+          isModalOpen={isModalOpen} 
+          ModalTitle={ModalTitle}
+          address={address}
+          setAddress={setAddress}
+          zipCode={zipCode}
+          setZipCode={setZipCode}
+          date={date}
+          setDate={setDate}
+          time={time}
+          setTime={setTime}
+          />
+          }
+        </div>
     </form>
   </section>
 );

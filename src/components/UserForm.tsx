@@ -7,7 +7,6 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { database } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import TodoContext from "../context/TodoContext";
 import { useContext } from "react";
@@ -123,14 +122,18 @@ function UserForm({ formType }: { formType: string }) {
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  id="LoginEmail"
+                  placeholder="Email"
+                  title="LoginEmail"
                   value={email}
                   onChange={handleChange}
                 />
                 <label htmlFor="password">Senha</label>
                 <input
                   type={showPassword ? "text" : "password"}
-                  id="password"
+                  title="loginPassword"
+                  placeholder="Senha"
+                  id="loginPassword"
                   value={password}
                   onChange={handleChange}
                 />
@@ -161,15 +164,19 @@ function UserForm({ formType }: { formType: string }) {
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  id="signUpEmail"
                   value={email}
+                  placeholder="Email"
+                  title="signUpEmail"
                   onChange={handleChange}
                 />
                 <label htmlFor="password">Senha</label>
                 <input
                   type={showPassword ? "text" : "password"}
-                  id="password"
+                  id="signUpPassword"
                   value={password}
+                  title="signUpPassword"
+                  placeholder="Senha"
                   onChange={handleChange}
                 />
                 <button
