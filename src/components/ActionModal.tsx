@@ -1,6 +1,6 @@
 import React from "react";
 
-function Modal({
+function ActionModal({
   todo,
   text,
   modalKind,
@@ -62,4 +62,4 @@ function Modal({
   );
 }
 
-export default Modal;
+export default ActionModal;
