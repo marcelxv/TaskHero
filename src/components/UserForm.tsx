@@ -11,6 +11,13 @@ import { useNavigate } from "react-router-dom";
 import TodoContext from "../context/TodoContext";
 import { useContext } from "react";
 
+const Tag = styled.button`
+cursor: pointer;
+border: 2px solid ${(props) => props.theme.colors.primary};
+background-color: ${(props) => props.theme.colors.secondary};
+color: ${(props) => props.theme.colors.primary};
+padding: 0.5rem 1rem;`
+
 function UserForm({ formType }: { formType: string }) {
   const { isLogged, setIsLogged } = useContext(TodoContext);
   const navigate = useNavigate();
@@ -75,31 +82,6 @@ function UserForm({ formType }: { formType: string }) {
   };
   const { name, email, password } = formData;
 
-  const Tag = styled.button`
-  cursor: pointer;
-  border: 2px solid ${(props) => props.theme.colors.primary};
-  background-color: ${(props) => props.theme.colors.secondary};
-  color: ${(props) => props.theme.colors.primary};
-  padding: 0.5rem 1rem;
-
-  // const LoginForm = styled.form`
-  //     display: flex;
-  //     flex-direction: column;
-  //     justify-content: center;
-  //     align-items: center;
-  //     padding: 1rem;
-  //     background-color: ${(props) => props.theme.colors.secondary};
-  // `;
-  // const Input = styled.input`
-  //     border: 2px solid ${(props) => props.theme.colors.primary};
-  //     background-color: ${(props) => props.theme.colors.secondary}
-  //     color: ${(props) => props.theme.colors.primary};
-  //     padding: 0.5rem 1rem;
-  //     border-radius: 0.25rem;
-  //     margin: 0.5rem;
-  //     font-size: ${(props) => props.theme.fontSizes.small};
-  //     font-family: ${(props) => props.theme.fontFamily};
-  // `;
 
   return (
     <>
@@ -122,7 +104,7 @@ function UserForm({ formType }: { formType: string }) {
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  id="LoginEmail"
+                  id="email"
                   placeholder="Email"
                   title="LoginEmail"
                   value={email}
@@ -133,7 +115,7 @@ function UserForm({ formType }: { formType: string }) {
                   type={showPassword ? "text" : "password"}
                   title="loginPassword"
                   placeholder="Senha"
-                  id="loginPassword"
+                  id="password"
                   value={password}
                   onChange={handleChange}
                 />
@@ -164,7 +146,7 @@ function UserForm({ formType }: { formType: string }) {
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  id="signUpEmail"
+                  id="email"
                   value={email}
                   placeholder="Email"
                   title="signUpEmail"
@@ -173,7 +155,7 @@ function UserForm({ formType }: { formType: string }) {
                 <label htmlFor="password">Senha</label>
                 <input
                   type={showPassword ? "text" : "password"}
-                  id="signUpPassword"
+                  id="password"
                   value={password}
                   title="signUpPassword"
                   placeholder="Senha"
