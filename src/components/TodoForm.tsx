@@ -74,7 +74,7 @@ function TodoForm() {
       color: ${(props) => props.theme.colors.secondary};
     }
     &.selected {
-      background-color: ${(props) => props.theme.colors.primary};
+      background-color: yellowgreen;
       color: ${(props) => props.theme.colors.secondary};
     }
   `;
@@ -100,17 +100,9 @@ function TodoForm() {
         className={setPriorOnInput()}
         value={value}
         onChange={(e) => setValue(e.target.value)} />
-      <button
-        disabled={value ? false : true}
-        data-testid="add-task-button"
-        className="btn"
-        type="submit"
-      >
-        Adicionar
-      </button>
       <TagSelector>
-        <Tag onClick={() => handleModal("Data")}>📅</Tag>
-        <Tag onClick={() => handleModal("Local")}>📍</Tag>
+        <Tag className={date && time ? "selected" : ""} onClick={() => handleModal("Data")}>📅</Tag>
+        <Tag className={address && zipCode ? "selected" : ""} onClick={() => handleModal("Local")}>📍</Tag>
       </TagSelector>
       <h3>Informe a prioridade</h3>
       <TagSelector>
@@ -135,6 +127,14 @@ function TodoForm() {
           />
           }
         </div>
+        <button
+        disabled={value ? false : true}
+        data-testid="add-task-button"
+        className="btn"
+        type="submit"
+      >
+        Adicionar
+      </button>
     </form>
   </section>
 );
