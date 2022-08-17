@@ -7,6 +7,10 @@ export interface Todo {
   cleanInput: string;
   isEditing: boolean;
   priority: string | number | readonly string[] | undefined;
+  address: string | number | readonly string[] | undefined;
+  zipCode: string | number | readonly string[] | undefined;
+  date: string | number | readonly string[] | undefined;
+  time: string | number | readonly string[] | undefined;  
 }
 
 
