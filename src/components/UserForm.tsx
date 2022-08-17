@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import styled from "styled-components";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -11,12 +10,6 @@ import { useNavigate } from "react-router-dom";
 import TodoContext from "../context/TodoContext";
 import { useContext } from "react";
 
-const Tag = styled.button`
-cursor: pointer;
-border: 2px solid ${(props) => props.theme.colors.primary};
-background-color: ${(props) => props.theme.colors.secondary};
-color: ${(props) => props.theme.colors.primary};
-padding: 0.5rem 1rem;`
 
 function UserForm({ formType }: { formType: string }) {
   const { isLogged, setIsLogged } = useContext(TodoContext);
@@ -88,12 +81,12 @@ function UserForm({ formType }: { formType: string }) {
       {isLogged ? (
         <>
           <h1>Seja bem vindo!</h1>
-          <Tag className="btn" onClick={() => navigate("/app")}>
+          <button className="btn" onClick={() => navigate("/app")}>
             Vá para o Task Hero
-          </Tag>
-          <Tag className="btn" onClick={logout}>
+          </button>
+          <button className="btn" onClick={logout}>
             Sair
-          </Tag>
+          </button>
         </>
       ) : (
         <>
