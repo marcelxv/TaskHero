@@ -6,7 +6,6 @@ import {
 } from "react";
 import { toast, ToastContentProps } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../App.css";
 
 function notify(
   message:

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { Box, Button } from "@primer/react";
 
 function NavBar() {
     const navigate = useNavigate()
@@ -12,9 +13,9 @@ function NavBar() {
 
   return (
     <>
-    <button className={pathMatchRoute('/app') ? 'selected' : ''} onClick={() => navigate('/app')}>Go to App</button>
-    <button className={pathMatchRoute('/about') ? 'selected' : ''} onClick={() => navigate('/about')}>Go to AboutPage</button>
-    <button className={pathMatchRoute('/login') ? 'selected' : ''} onClick={() => navigate('/login')}>Go to Login Page</button>  
+    <Button variant={pathMatchRoute('/app') ? 'primary' : 'invisible'} size="small" onClick={() => navigate("/app")}>App</Button>
+    <Button variant={pathMatchRoute('/login') ? 'primary' : 'invisible'} size="small" onClick={() => navigate("/login")}>Login</Button>
+    <Button variant={pathMatchRoute('/about') ? 'primary' : 'invisible'}size="small" onClick={() => navigate("/about")}>About</Button>
     </>
     )
 }

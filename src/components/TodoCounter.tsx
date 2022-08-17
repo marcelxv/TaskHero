@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 
