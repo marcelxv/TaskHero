@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 import AddressModal from "./TodoModal";
+import { Box, Text, Button, CircleBadge } from "@primer/react";
 
 function TodoForm() {
   const { addTodo } = useContext(TodoContext);
@@ -15,10 +16,11 @@ function TodoForm() {
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
 
-  const handleModal = (kind: string) => {
+  const handleModal = (e: { preventDefault: () => void }, kind: string) => {
+    e.preventDefault();
     setModalTitle(kind);
     setIsModalOpen(true);
-  }    
+  };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -43,56 +45,96 @@ function TodoForm() {
       default:
         return "input-form";
     }
-  }
+  };
 
   return (
-  <section className="todo-form-wrapper"> 
-    <form className="todo-form" onSubmit={handleSubmit}>
-    <h3>Descreva a tarefa</h3>
-      <input
-        name="todo"
-        placeholder={`Adicionar tarefa`}
-        type="text"
-        className={setPriorOnInput()}
-        value={value}
-        onChange={(e) => setValue(e.target.value)} />
-      <>
-        <button className={date && time ? "selected" : ""} onClick={() => handleModal("Data")}>📅</button>
-        <button className={address && zipCode ? "selected" : ""} onClick={() => handleModal("Local")}>📍</button>
-      </>
-      <h3>Informe a prioridade</h3>
-      <>
-        <button className={prior === "high" ? "selected" : ""} onClick={() => setPrior('high')}>🔺</button>
-        <button className={prior === "normal" ? "selected" : ""} onClick={() => setPrior('normal')}>🔹</button>
-        <button className={prior === "low" ? "selected" : ""} onClick={() => setPrior('low')}>🟢</button>
-      </>
-        <div>
-          {isModalOpen && 
-          <AddressModal
-          setIsModalOpen={setIsModalOpen}
-          isModalOpen={isModalOpen} 
-          ModalTitle={ModalTitle}
-          address={address}
-          setAddress={setAddress}
-          zipCode={zipCode}
-          setZipCode={setZipCode}
-          date={date}
-          setDate={setDate}
-          time={time}
-          setTime={setTime}
+    <Box
+      backgroundColor={"#eee"}
+      borderRadius={"30px"}
+      padding={"2rem 0"}
+      margin={"20px"}
+    >
+      <form className="todo-form" onSubmit={handleSubmit}>
+        <Box width={'100%'}display={'flex'} alignItems={'center'} justifyContent={'space-around'}>
+          <input
+            name="todo"
+            placeholder={`Adicionar tarefa`}
+            type="text"
+            className={setPriorOnInput()}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
-          }
+          <Button
+            size={30}
+            className={date && time ? "selected" : ""}
+            onClick={(e: any) => handleModal(e, "Data")}
+          >
+            📅
+          </Button>
+          <Button
+            size={30}
+            className={address && zipCode ? "selected" : ""}
+            onClick={(e: any) => handleModal(e, "Local")}
+          >
+            📍
+          </Button>
+        </Box>
+        <Box display={"flex"} alignItems={"center"} justifyContent={"flex-end"}>
+          <CircleBadge
+            sx={{ cursor: ["pointer"], margin: ["0 1rem"] }}
+            size={40}
+            variant={"small"}
+            className={prior === "high" ? "selected" : ""}
+            onClick={() => setPrior("high")}
+          >
+            🔺
+          </CircleBadge>
+          <CircleBadge
+            sx={{ cursor: ["pointer"], margin: ["0 1rem"] }}
+            size={40}
+            variant={"small"}
+            className={prior === "normal" ? "selected" : ""}
+            onClick={() => setPrior("normal")}
+          >
+            🔹
+          </CircleBadge>
+          <CircleBadge
+            sx={{ cursor: ["pointer"], margin: ["0 1rem"] }}
+            size={40}
+            variant={"small"}
+            className={prior === "low" ? "selected" : ""}
+            onClick={() => setPrior("low")}
+          >
+            🟢
+          </CircleBadge>
+        </Box>
+        <div>
+          {isModalOpen && (
+            <AddressModal
+              setIsModalOpen={setIsModalOpen}
+              isModalOpen={isModalOpen}
+              ModalTitle={ModalTitle}
+              address={address}
+              setAddress={setAddress}
+              zipCode={zipCode}
+              setZipCode={setZipCode}
+              date={date}
+              setDate={setDate}
+              time={time}
+              setTime={setTime}
+            />
+          )}
         </div>
         <button
-        disabled={value ? false : true}
-        data-testid="add-task-button"
-        className="btn"
-        type="submit"
-      >
-        Adicionar
-      </button>
-    </form>
-  </section>
-);
+          disabled={value ? false : true}
+          data-testid="add-task-button"
+          className="btn"
+          type="submit"
+        >
+          Adicionar
+        </button>
+      </form>
+    </Box>
+  );
 }
 export default TodoForm;

@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import TodoContext from "../context/TodoContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button } from "@primer/react";
+import { Box, Button, Flash } from "@primer/react";
 import '../App.css'
 
 function TodoApp() {
@@ -16,22 +16,22 @@ function TodoApp() {
   const { isLogged } = useContext(TodoContext);
 
   return (
-    <Box backgroundColor={'slateblue'} height={'100vh'} >
+    <Box min-height={'100vh'} height={'100vh'} margin={'1rem 0.6rem'}>
       <Header emoji="🦸" />
       {!isLogged ? (
-        <>
-          <h1>Você precisa estar logado</h1>
+        <Box height={'100px'} margin={'4rem 0'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
+          <Flash variant={'warning'}>Você precisa estar logado</Flash>
           <Button size="large" onClick={() => navigate("/login")}>Login</Button>
-        </>
+        </Box>
       ) : (
-        <>
-          <>
+        <Box>
+          <Box>
             <ToastContainer theme="dark" position="top-center" />
             <TodoForm />
             <TodoList />
             <TodoCounter />
-          </>
-        </>
+          </Box>
+        </Box>
       )}
       <NavBar />
     </Box>
