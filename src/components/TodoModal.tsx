@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog, Box, TextInput, Button } from "@primer/react";
+import { Dialog, Box, TextInput, Button, FormControl } from "@primer/react";
 import { SearchIcon, HomeFillIcon } from "@primer/octicons-react";
 function TodoModal({
   isModalOpen,
@@ -47,6 +47,8 @@ function TodoModal({
         >
           {ModalTitle === "Local" ? (
             <Box>
+              <FormControl>
+                <FormControl.Label>Onde a tarefa será feita?</FormControl.Label>
                 <TextInput
                   placeholder="Digite o local da Task"
                   title="Local"
@@ -54,6 +56,9 @@ function TodoModal({
                   type="text"
                   onChange={(e) => setAddress(e.target.value)}
                 />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Qual o CEP?</FormControl.Label>
                 <TextInput
                   placeholder="Digite o CEP da Task"
                   title="Cep"
@@ -61,20 +66,29 @@ function TodoModal({
                   type="text"
                   onChange={(e) => setZipCode(e.target.value)}
                 />
+              </FormControl>
             </Box>
           ) : (
             <Box>
-              <TextInput
-                title="data"
-                type="date"
-                onChange={(e) => setDate(e.target.value)}
-              />
-              <TextInput
-                title="hora"
-                placeholder="Escolha a hora"
-                type="time"
-                onChange={(e) => setTime(e.target.value)}
-              />
+              <FormControl>
+                <FormControl.Label>
+                  Qual dia pretende entregar?
+                </FormControl.Label>
+                <TextInput
+                  title="data"
+                  type="date"
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>A que horas?</FormControl.Label>
+                <TextInput
+                  title="hora"
+                  placeholder="Escolha a hora"
+                  type="time"
+                  onChange={(e) => setTime(e.target.value)}
+                />
+              </FormControl>
             </Box>
           )}
           <Box className="modal-footer">

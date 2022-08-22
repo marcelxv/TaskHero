@@ -14,6 +14,8 @@ interface TodoContextProps {
   ) => void;
   isLogged: boolean;
   setIsLogged: (isLogged: boolean) => void;
+  persistTodos: () => void;
+  persistIsLogged: (status: boolean) => void;
 }
 
 const TodoContext = createContext({} as TodoContextProps);
@@ -74,6 +76,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
           date: date,
         });
         setTodos(newTodos as any);
+        persistTodos()
       }
     }
   };
@@ -94,6 +97,15 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     setTodos(newTodos as any);
   };
 
+  // Persist login status and todo list
+  const persistTodos = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+  const persistIsLogged = (status: boolean) => {
+    localStorage.setItem("isLogged", JSON.stringify(status));
+    console.log(isLogged);
+  }
+
   return (
     <TodoContext.Provider
       value={{
@@ -106,6 +118,8 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         saveTodo,
         isLogged,
         setIsLogged,
+        persistTodos,
+        persistIsLogged,
       }}
     >
       {children}

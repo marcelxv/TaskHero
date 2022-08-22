@@ -10,8 +10,9 @@ import { useNavigate } from "react-router-dom";
 import TodoContext from "../context/TodoContext";
 import { useContext } from "react";
 
-
 function UserForm({ formType }: { formType: string }) {
+  const { persistIsLogged } = useContext(TodoContext)
+
   const { isLogged, setIsLogged } = useContext(TodoContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -62,8 +63,9 @@ function UserForm({ formType }: { formType: string }) {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
           .then(() => {
-            // navigate('/');
+            navigate('/');
             setIsLogged(true);
+            persistIsLogged(true)
           })
           .catch((error) => {
             console.log(error);
