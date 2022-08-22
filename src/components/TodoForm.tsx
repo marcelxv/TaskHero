@@ -3,7 +3,14 @@ import { useState } from "react";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 import AddressModal from "./TodoModal";
-import { Box, Text, Button, CircleBadge } from "@primer/react";
+import {
+  Box,
+  ActionMenu,
+  Button,
+  Select,
+  FormControl,
+  TextInput,
+} from "@primer/react";
 
 function TodoForm() {
   const { addTodo } = useContext(TodoContext);
@@ -48,93 +55,90 @@ function TodoForm() {
   };
 
   return (
-    <Box
-      backgroundColor={"#eee"}
-      borderRadius={"30px"}
-      padding={"2rem 0"}
-      margin={"20px"}
-    >
-      <form className="todo-form" onSubmit={handleSubmit}>
-        <Box width={'100%'}display={'flex'} alignItems={'center'} justifyContent={'space-around'}>
-          <input
-            name="todo"
-            placeholder={`Adicionar tarefa`}
-            type="text"
-            className={setPriorOnInput()}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <Button
-            size={30}
-            className={date && time ? "selected" : ""}
-            onClick={(e: any) => handleModal(e, "Data")}
-          >
-            📅
-          </Button>
-          <Button
-            size={30}
-            className={address && zipCode ? "selected" : ""}
-            onClick={(e: any) => handleModal(e, "Local")}
-          >
-            📍
-          </Button>
-        </Box>
-        <Box display={"flex"} alignItems={"center"} justifyContent={"flex-end"}>
-          <CircleBadge
-            sx={{ cursor: ["pointer"], margin: ["0 1rem"] }}
-            size={40}
-            variant={"small"}
-            className={prior === "high" ? "selected" : ""}
-            onClick={() => setPrior("high")}
-          >
-            🔺
-          </CircleBadge>
-          <CircleBadge
-            sx={{ cursor: ["pointer"], margin: ["0 1rem"] }}
-            size={40}
-            variant={"small"}
-            className={prior === "normal" ? "selected" : ""}
-            onClick={() => setPrior("normal")}
-          >
-            🔹
-          </CircleBadge>
-          <CircleBadge
-            sx={{ cursor: ["pointer"], margin: ["0 1rem"] }}
-            size={40}
-            variant={"small"}
-            className={prior === "low" ? "selected" : ""}
-            onClick={() => setPrior("low")}
-          >
-            🟢
-          </CircleBadge>
-        </Box>
-        <div>
-          {isModalOpen && (
-            <AddressModal
-              setIsModalOpen={setIsModalOpen}
-              isModalOpen={isModalOpen}
-              ModalTitle={ModalTitle}
-              address={address}
-              setAddress={setAddress}
-              zipCode={zipCode}
-              setZipCode={setZipCode}
-              date={date}
-              setDate={setDate}
-              time={time}
-              setTime={setTime}
-            />
-          )}
-        </div>
-        <button
-          disabled={value ? false : true}
-          data-testid="add-task-button"
-          className="btn"
-          type="submit"
+    <>
+      <Box
+        background={["#FFFFFF", "#FFFFFF"]}
+        boxShadow={[
+          "0px 8px 24px rgba(140, 149, 159, 0.2)",
+          "0px 8px 24px rgba(140, 149, 159, 0.2)",
+        ]}
+        borderRadius={["30px", "30px"]}
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        padding={["50px", "20px"]}
         >
-          Adicionar
-        </button>
-      </form>
-    </Box>
+        <FormControl>
+          <Box minWidth={"350px"}>
+            <Box>
+              <FormControl.Label>O que você deseja fazer?</FormControl.Label>
+              <TextInput
+                name="todo"
+                placeholder={`Algo incrível que você deseja fazer`}
+                type="text"
+                className={setPriorOnInput()}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+            </Box>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+            >
+              <Button
+                className={date && time ? "selected" : ""}
+                onClick={(e: any) => handleModal(e, "Data")}
+              >
+                📅
+              </Button>
+              <Button
+                className={address && zipCode ? "selected" : ""}
+                onClick={(e: any) => handleModal(e, "Local")}
+              >
+                📍
+              </Button>
+              <Select
+                onChange={(e) => setPrior(e.target.value)}
+                placeholder={"Qual a prioridade?"}
+              >
+                <Select.Option value="low">Baixa</Select.Option>
+                <Select.Option value="normal">Normal</Select.Option>
+                <Select.Option value="high">Alta</Select.Option>
+              </Select>
+            </Box>
+          </Box>
+          <div>
+            {isModalOpen && (
+              <AddressModal
+                setIsModalOpen={setIsModalOpen}
+                isModalOpen={isModalOpen}
+                ModalTitle={ModalTitle}
+                address={address}
+                setAddress={setAddress}
+                zipCode={zipCode}
+                setZipCode={setZipCode}
+                date={date}
+                setDate={setDate}
+                time={time}
+                setTime={setTime}
+              />
+            )}
+          </div>
+          <Button
+            variant="primary"
+            size="large"
+            disabled={value ? false : true}
+            type="submit"
+            sx={{ width: "100%" }}
+            onClick={handleSubmit}
+          >
+            Adicionar
+          </Button>
+        </FormControl>
+      </Box>
+    </>
   );
 }
 export default TodoForm;

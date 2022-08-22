@@ -1,6 +1,8 @@
 import React from "react";
-
+import { Dialog, Box, TextInput, Button } from "@primer/react";
+import { SearchIcon, HomeFillIcon } from "@primer/octicons-react";
 function TodoModal({
+  isModalOpen,
   setIsModalOpen,
   ModalTitle,
   setTime,
@@ -24,52 +26,70 @@ function TodoModal({
     e.preventDefault();
     setIsModalOpen(false);
   };
+  const returnFocusRef = React.useRef(null);
+
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <div className="modal-header">
-          <button className="close" onClick={() => setIsModalOpen(false)}>
-            &times;
-          </button>{" "}
-          <h2>{ModalTitle}</h2>
-        </div>
-        {ModalTitle === "Local" ? (
-          <div className="modal-body">
-            <form action="submit">
-              <label>
-                <span>Local:</span>
-              </label>
-              <input placeholder="Digite o local da Task" title="Local" type="text" onChange={(e) => setAddress(e.target.value)} />
-              <label>
-                <span>CEP</span>
-              </label>
-              <input placeholder="Digite o CEP da Task" title="CEP" type="text" onChange={(e) => setZipCode(e.target.value)} />
-            </form>
-          </div>
-        ) : (
-          <div className="modal-body">
-            <label>
-              <span>Data</span>
-            </label>
-            <input title="data" type="date" onChange={(e) => setDate(e.target.value)} />
-            <label>
-              <span>Hora</span>
-            </label>
-            <input title="hora" placeholder="Escolha a hora" type="time" onChange={(e) => setTime(e.target.value)} />
-          </div>
-        )}
-        <div className="modal-footer">
-          <button
-            className="btn-check"
-            onClick={(e) => {
-              handleSubmit(e);
-            }}
-          >
-            Salvar
-          </button>
-        </div>
-      </div>
-    </div>
+    <Dialog
+      className="modal"
+      returnFocusRef={returnFocusRef}
+      isOpen={isModalOpen}
+      onDismiss={() => setIsModalOpen(false)}
+      aria-labelledby="header-id"
+    >
+      <Box>
+        <Dialog.Header>{ModalTitle}</Dialog.Header>
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          padding={"3rem"}
+        >
+          {ModalTitle === "Local" ? (
+            <Box>
+                <TextInput
+                  placeholder="Digite o local da Task"
+                  title="Local"
+                  leadingVisual={HomeFillIcon}
+                  type="text"
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+                <TextInput
+                  placeholder="Digite o CEP da Task"
+                  title="Cep"
+                  leadingVisual={SearchIcon}
+                  type="text"
+                  onChange={(e) => setZipCode(e.target.value)}
+                />
+            </Box>
+          ) : (
+            <Box>
+              <TextInput
+                title="data"
+                type="date"
+                onChange={(e) => setDate(e.target.value)}
+              />
+              <TextInput
+                title="hora"
+                placeholder="Escolha a hora"
+                type="time"
+                onChange={(e) => setTime(e.target.value)}
+              />
+            </Box>
+          )}
+          <Box className="modal-footer">
+            <Button
+              className="btn-check"
+              onClick={(e: any) => {
+                handleSubmit(e);
+              }}
+            >
+              Salvar
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Dialog>
   );
 }
 

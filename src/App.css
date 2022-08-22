@@ -31,35 +31,32 @@
 }
 
 .input-form {
-  width: 60%;
-  padding: 10px;
   border-radius: 6px;
-  font-size: 14px;
-  border: 3px solid darkslateblue;
+  width: 100%;
+  font-size: 13px;
+  border: 2px solid darkslateblue;
   background-color: rgba(243, 243, 243, 0.452);
+  margin: 18px 0;
 }
 
 .input-form.low {
-  padding: 10px;
   border-radius: 6px;
   font-size: 14px;
-  border: 3px solid rgb(61, 139, 92);
+  border: 2px solid rgb(61, 139, 92);
   background-color: rgba(243, 243, 243, 0.452);
 }
 
 .input-form.high {
-  padding: 10px;
   border-radius: 6px;
   font-size: 14px;
-  border: 3px solid rgba(248, 37, 37, 0.584);
+  border: 2px solid rgba(248, 37, 37, 0.584);
   background-color: rgba(243, 243, 243, 0.452);
 }
 
 .input-form.normal {
-  padding: 10px;
   border-radius: 6px;
   font-size: 14px;
-  border: 3px solid slateblue;
+  border: 2px solid slateblue;
   background-color: rgba(243, 243, 243, 0.452);
 }
 
@@ -185,6 +182,7 @@ input:focus {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
 .btn-check {
   border: none;
   background: none;
@@ -210,3 +208,6 @@ input:focus {
   padding: 0 2rem;
 }
 
+.selected {
+  background: #2DA44E !important;
+}
