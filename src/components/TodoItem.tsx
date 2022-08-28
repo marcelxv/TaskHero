@@ -3,6 +3,11 @@ import { Todo } from "../types";
 import Modal from "./ActionModal";
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
+import {
+  Box,
+  Button,
+  TextInput,
+  } from "@primer/react";
 
 function TodoItem({ todo, index }: { todo: Todo; index: number }) {
   const { removeTodo, completeTodo, editTodo, saveTodo } = useContext(
@@ -19,28 +24,39 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
   const isEditable = handleEdit();
 
   return (
-    <div className={todoState()}>
+    <Box className={todoState()} borderWidth={2} boxShadow={[ "0px 8px 24px rgba(140, 149, 159, 0.2)"
+    , "0px 8px 24px rgba(140, 149, 159, 0.2)" , ]} borderRadius={["30px", "30px" ]} p={3}   sx={{
+      cursor: "pointer",
+    }}>
       {todo.isEditing ? (
-        <div className="form-edit">
+        <Box className="form-edit">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               saveTodo(index, value);
             }}
           />
-          <input
+          <TextInput
             title="edit-input"
+            sx={
+              {
+                backgroundColor: "slateblue",
+                border: "none",
+                color: "white",
+                width: "240px",
+                padding: "4px 5px",
+              }
+            }
             placeholder=""
             type="text"
-            className="input-edit"
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-        </div>
+        </Box>
       ) : (
         <span className="todo-input">{isTooLong(todo.text as any)}{setPriorEmoji()}</span>
       )}
-      <div className="buttons">
+      <Box className="buttons">
         {todo.isEditing ? (
           <>
             <button
@@ -71,7 +87,7 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
             </button>
           </>
         )}
-      </div>
+      </Box>
 
       {isModalOpen ? (
         <Modal
@@ -83,7 +99,7 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
           index={index}
         />
       ) : null}
-    </div>
+    </Box>
   );
 
   function handleComplete() {
