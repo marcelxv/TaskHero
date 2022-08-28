@@ -35,16 +35,22 @@ function NavBar() {
               Home
             </SubNav.Link>
             <SubNav.Link
-              href="/login"
-              selected={pathMatchRoute("/login") ? true : false}
+              onClick={() => navigate("/")}
+              selected={pathMatchRoute("/") ? true : false}
             >
-              Login
+              Calendar
             </SubNav.Link>
             <SubNav.Link
-              href="/about"
+              onClick={() => navigate("/about")}
               selected={pathMatchRoute("/about") ? true : false}
             >
               About
+            </SubNav.Link>
+            <SubNav.Link
+              onClick={() => navigate("/login")}
+              selected={pathMatchRoute("/login") ? true : false}
+            >
+              Login
             </SubNav.Link>
           </SubNav.Links>
         </SubNav>

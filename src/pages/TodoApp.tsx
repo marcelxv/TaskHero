@@ -13,8 +13,8 @@ import '../App.css'
 
 function TodoApp() {
   const navigate = useNavigate();
-  const { isLogged } = useContext(TodoContext);
-
+  const { isLogged, getLocalData } = useContext(TodoContext);
+  getLocalData();
   return (
     <Box min-height={'100vh'} height={'100vh'} margin={'1rem 0.6rem'}>
       <Header emoji="🦸" />

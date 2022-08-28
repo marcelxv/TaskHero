@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+.dark {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
 .filter-selector {
   border: none;
   background: none;

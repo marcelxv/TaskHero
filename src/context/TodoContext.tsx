@@ -16,6 +16,7 @@ interface TodoContextProps {
   setIsLogged: (isLogged: boolean) => void;
   persistTodos: () => void;
   persistIsLogged: (status: boolean) => void;
+  getLocalData: () => void;
 }
 
 const TodoContext = createContext({} as TodoContextProps);
@@ -106,6 +107,16 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     console.log(isLogged);
   }
 
+  // retreive data from local storage
+  const getLocalData = () => {
+    const isLogged = localStorage.getItem("isLogged");
+    if (isLogged) {
+      return setIsLogged(JSON.parse(isLogged));
+    } else {
+      return [];
+    }
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -120,6 +131,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         setIsLogged,
         persistTodos,
         persistIsLogged,
+        getLocalData,
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import React from "react";
-import TodoContext, { TodoContextProvider } from "./context/TodoContext";
+import { TodoContextProvider } from "./context/TodoContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";

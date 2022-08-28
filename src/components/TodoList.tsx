@@ -28,8 +28,8 @@ function TodoList() {
     }
   };
   return (
-    <>
-      <Box display={'flex'} flexDirection={'column'} marginTop={'30px'} marginBottom={'30px'} justifyContent={'flex-end'}>
+    <Box display={["flex"]} flexDirection={"column"} alignItems={"center"}>
+      <Box display={'flex'} flexDirection={'column'} marginTop={'30px'} marginBottom={'30px'} justifyContent={'center'} width={'320px'}>
           <Select
             className="filter-selector"
             onChange={handleChange}
@@ -42,11 +42,13 @@ function TodoList() {
             <Select.Option value="normal">Normais 🔹</Select.Option>
             <Select.Option value="high">Importantes 🔺</Select.Option>
           </Select>
+          <Box marginTop={'30px'}>
         {filterTodos(todos).map((todo, key) => (
           <TodoItem key={key} index={todo.index} todo={todo} />
         ))}
+        </Box>
       </Box>
-    </>
+    </Box>
   );
 }
 

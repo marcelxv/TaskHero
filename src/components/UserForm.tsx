@@ -11,7 +11,7 @@ import TodoContext from "../context/TodoContext";
 import { useContext } from "react";
 
 function UserForm({ formType }: { formType: string }) {
-  const { persistIsLogged } = useContext(TodoContext)
+  const { persistIsLogged, getLocalData } = useContext(TodoContext)
 
   const { isLogged, setIsLogged } = useContext(TodoContext);
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ function UserForm({ formType }: { formType: string }) {
   };
   const { name, email, password } = formData;
 
-
+  getLocalData();
   return (
     <>
       {isLogged ? (

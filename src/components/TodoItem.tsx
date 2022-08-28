@@ -5,7 +5,7 @@ import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 import {
   Box,
-  Button,
+  Text,
   TextInput,
   } from "@primer/react";
 
@@ -25,7 +25,7 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
 
   return (
     <Box className={todoState()} borderWidth={2} boxShadow={[ "0px 8px 24px rgba(140, 149, 159, 0.2)"
-    , "0px 8px 24px rgba(140, 149, 159, 0.2)" , ]} borderRadius={["30px", "30px" ]} p={3}   sx={{
+    , "0px 8px 24px rgba(140, 149, 159, 0.2)" , ]} borderRadius={["30px", "30px" ]} p={3}  m={0} sx={{
       cursor: "pointer",
     }}>
       {todo.isEditing ? (
@@ -43,7 +43,7 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
                 backgroundColor: "slateblue",
                 border: "none",
                 color: "white",
-                width: "240px",
+                width: "170px",
                 padding: "4px 5px",
               }
             }
@@ -54,7 +54,9 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
           />
         </Box>
       ) : (
-        <span className="todo-input">{isTooLong(todo.text as any)}{setPriorEmoji()}</span>
+        <Box maxWidth={"100px"}>
+        <Text as={'span'}>{isTooLong(todo.text as any)}</Text>
+        </Box>
       )}
       <Box className="buttons">
         {todo.isEditing ? (
@@ -143,7 +145,7 @@ function TodoItem({ todo, index }: { todo: Todo; index: number }) {
       if (text.length > 20) {
         return (
           <>
-            <span>{text.substring(0, 20)}</span>
+            <span>{text.substring(0, 8)}</span>
             <button className="btn-check" onClick={() => openModal("readMore")}>
               ...
             </button>
