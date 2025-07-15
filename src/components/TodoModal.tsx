@@ -1,4 +1,11 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+
+interface ViaCEPResponse {
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  erro?: boolean;
+}
 
 function TodoModal({
   setIsModalOpen,
@@ -20,8 +27,59 @@ function TodoModal({
   zipCode: string;
   setZipCode: (zipCode: string) => void;
 }) {
+  const [localZipCode, setLocalZipCode] = useState("");
+  const [logradouro, setLogradouro] = useState("");
+  const [numero, setNumero] = useState("");
+  const [complemento, setComplemento] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [cepError, setCepError] = useState("");
+  const numeroRef = useRef<HTMLInputElement>(null);
+  const fetchCEP = async (cep: string) => {
+    if (cep.length !== 8) return;
+    
+    setCepError("");
+    
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data: ViaCEPResponse = await response.json();
+      
+      if (data.erro) {
+        setCepError("CEP não foi encontrado.");
+        return;
+      }
+      
+      setLogradouro(data.logradouro);
+      setBairro(data.bairro);
+      setCidade(data.localidade);
+      
+      if (numeroRef.current) {
+        numeroRef.current.focus();
+      }
+    } catch (error) {
+      setCepError("Erro ao buscar CEP. Tente novamente.");
+    }
+  };
+
+  const handleCEPChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, "");
+    setLocalZipCode(value);
+    setZipCode(value);
+    
+    if (value.length === 8) {
+      fetchCEP(value);
+    } else {
+      setLogradouro("");
+      setBairro("");
+      setCidade("");
+      setCepError("");
+    }
+  };
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const fullAddress = `${logradouro}, ${numero}${complemento ? `, ${complemento}` : ""}, ${bairro}, ${cidade}`;
+    setAddress(fullAddress);
     setIsModalOpen(false);
   };
   return (
@@ -37,13 +95,76 @@ function TodoModal({
           <div className="modal-body">
             <form action="submit">
               <label>
-                <span>Local:</span>
-              </label>
-              <input placeholder="Digite o local da Task" title="Local" type="text" onChange={(e) => setAddress(e.target.value)} />
-              <label>
                 <span>CEP</span>
               </label>
-              <input placeholder="Digite o CEP da Task" title="CEP" type="text" onChange={(e) => setZipCode(e.target.value)} />
+              <input 
+                placeholder="Digite o CEP (somente números)" 
+                title="CEP" 
+                type="text" 
+                value={localZipCode}
+                onChange={handleCEPChange}
+                maxLength={8}
+              />
+              {cepError && <span style={{color: 'red', fontSize: '12px'}}>{cepError}</span>}
+              
+              <label>
+                <span>Logradouro:</span>
+              </label>
+              <input 
+                placeholder="Logradouro será preenchido automaticamente" 
+                title="Logradouro" 
+                type="text" 
+                value={logradouro}
+                readOnly
+                style={{backgroundColor: '#f5f5f5'}}
+              />
+              
+              <label>
+                <span>Número:</span>
+              </label>
+              <input 
+                ref={numeroRef}
+                placeholder="Digite o número" 
+                title="Número" 
+                type="text" 
+                value={numero}
+                onChange={(e) => setNumero(e.target.value)}
+              />
+              
+              <label>
+                <span>Complemento:</span>
+              </label>
+              <input 
+                placeholder="Apartamento, bloco, etc. (opcional)" 
+                title="Complemento" 
+                type="text" 
+                value={complemento}
+                onChange={(e) => setComplemento(e.target.value)}
+              />
+              
+              <label>
+                <span>Bairro:</span>
+              </label>
+              <input 
+                placeholder="Bairro será preenchido automaticamente" 
+                title="Bairro" 
+                type="text" 
+                value={bairro}
+                readOnly
+                style={{backgroundColor: '#f5f5f5'}}
+              />
+              
+              <label>
+                <span>Cidade:</span>
+              </label>
+              <input 
+                placeholder="Cidade será preenchida automaticamente" 
+                title="Cidade" 
+                type="text" 
+                value={cidade}
+                readOnly
+                style={{backgroundColor: '#f5f5f5'}}
+              />
             </form>
           </div>
         ) : (
